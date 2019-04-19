@@ -33,22 +33,22 @@ A new browser window should automatically open displaying the Expo DevTools. If 
 
 ## How to Use the App
 
-- User can add a new deck
+### User can add a new deck
   <img src="NewDeck.png" alt="New Deck Screen" width="200"/>
 
-- Selected user can view his/her Decks
+### Selected user can view his/her Decks
   <img src="HomeScreen.png" alt="Home Screen" width="200"/>
 
-- User can view an individual deck
+### User can view an individual deck
   <img src="ViewDeck.png" alt="View deck Screen" width="200"/>
 
-- Deck when no cards are added
+### Deck when no cards are added
   <img src="ViewDeck-NoCards.png" alt="View deck Screen - No Cards" width="200"/>
 
-- User can add a new card to a deck
+### User can add a new card to a deck
   <img src="NewCard.png" alt="New card Screen" width="200"/>
 
-- User can take a quiz
+### User can take a quiz
   <img src="Quiz-Question.png" alt="Quiz Screen - Question" width="200"/>
 
   <img src="Quiz-Answer.png" alt="Quiz Screen - Answer" width="200"/>
