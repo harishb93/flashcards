@@ -34,23 +34,23 @@ A new browser window should automatically open displaying the Expo DevTools. If 
 ## How to Use the App
 
 - User can add a new deck
-  ![New Deck Screen](NewDeck.png "new deck" | width=100)
+  <img src="NewDeck.png" alt="New Deck Screen" width="200"/>
 
 - Selected user can view his/her Decks
-  ![Home Screen](HomeScreen.png "home screen" | width=100)
+  <img src="HomeScreen.png" alt="Home Screen" width="200"/>
 
 - User can view an individual deck
-  ![View deck Screen](ViewDeck.png "view deck" | width=100)
+  <img src="ViewDeck.png" alt="View deck Screen" width="200"/>
 
 - Deck when no cards are added
-  ![View deck Screen - No Cards](ViewDeck-NoCards.png "view deck no cards" | width=100)
+  <img src="ViewDeck-NoCards.png" alt="View deck Screen - No Cards" width="200"/>
 
 - User can add a new card to a deck
-  ![New card Screen](NewCard.png "new card" | width=100)
+  <img src="NewCard.png" alt="New card Screen" width="200"/>
 
 - User can take a quiz
-  ![Quiz Screen - Question](Quiz-Question.png "quiz question" | width=100)
+  <img src="Quiz-Question.png" alt="Quiz Screen - Question" width="200"/>
 
-  ![Quiz Screen - Answer](Quiz-Answer.png "quiz answer" | width=100)
+  <img src="Quiz-Answer.png" alt="Quiz Screen - Answer" width="200"/>
 
-  ![Quiz Screen - Result](Quiz-Result.png "quiz result" | width=100)
+  <img src="Quiz-Result.png" alt="Quiz Screen - Result" width="200"/>
