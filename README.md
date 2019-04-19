@@ -28,7 +28,7 @@ yarn start
 npm start
 ```
 
-A new browser window should automatically open displaying the Expo Bundler. If it doesn't, navigate to [http://localhost:19002/](http://localhost:19002/) in your browser. You may want to connect your physical device to your computer or have an emulator set up with ADB configured for Expo to be able to pick it up.
+A new browser window should automatically open displaying the Expo DevTools. If it doesn't, navigate to [http://localhost:19002/](http://localhost:19002/) in your browser. You may want to connect your physical device to your computer or have an emulator set up with ADB configured for Expo to be able to pick it up.
 
 ![Home Screen](HomeScreen.PNG "home screen")
 

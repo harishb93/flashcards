@@ -19,6 +19,7 @@ class Deck extends Component{
 
     return(
       <View style={{flex: 1, justifyContent: 'center'}}>
+        <Text style={styles.heading}>{deck.title}</Text>
         <Text style={styles.content}>There are {deck.questions.length} cards in this deck</Text>
         {
           deck.questions.length===0 ?
@@ -44,6 +45,13 @@ class Deck extends Component{
 const styles=StyleSheet.create({
   content:{
     fontSize: 18,
+    color: purple,
+    padding: 30,
+    textAlign: 'center'
+  },
+  heading:{
+    fontSize: 24,
+    fontWeight: 'bold',
     color: purple,
     padding: 30,
     textAlign: 'center'
