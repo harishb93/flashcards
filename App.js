@@ -11,6 +11,7 @@ import Decks from './components/Decks'
 import Deck from './components/Deck'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
+import QuizCard from './components/QuizCard'
 
 function UdaciStatusBar({backgroundColor, ...props}){
   return(
@@ -26,15 +27,15 @@ const Tabs = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({tintColor}) => <MaterialCommunityIcons name='cards-outline' size={30} color={tintColor} />
+    }
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add New Deck',
+      tabBarIcon: ({tintColor}) => <Feather name='plus-circle' size={30} color={tintColor} />
+    }
   }
-},
-AddDeck: {
-  screen: AddDeck,
-  navigationOptions: {
-    tabBarLabel: 'Add New Deck',
-    tabBarIcon: ({tintColor}) => <Feather name='plus-circle' size={30} color={tintColor} />
-}
-}
 },
 {
   navigationOptions: {
@@ -73,6 +74,15 @@ const Stack = createAppContainer(createStackNavigator({
   },
   AddCard: {
     screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: navyBlue
+      }
+    }
+  },
+  QuizCard: {
+    screen: QuizCard,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

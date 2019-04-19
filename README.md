@@ -30,19 +30,27 @@ npm start
 
 A new browser window should automatically open displaying the Expo DevTools. If it doesn't, navigate to [http://localhost:19002/](http://localhost:19002/) in your browser. You may want to connect your physical device to your computer or have an emulator set up with ADB configured for Expo to be able to pick it up.
 
-![Home Screen](HomeScreen.png "home screen")
 
 ## How to Use the App
 
-- Selected user can view his/her Decks
 - User can add a new deck
-  ![New Deck Screen](NewDeck.png "new deck")
+  ![New Deck Screen](NewDeck.png "new deck" | width=100)
 
-- User can view a deck
-  ![View deck Screen](ViewDeck.png "view deck")
+- Selected user can view his/her Decks
+  ![Home Screen](HomeScreen.png "home screen" | width=100)
+
+- User can view an individual deck
+  ![View deck Screen](ViewDeck.png "view deck" | width=100)
+
+- Deck when no cards are added
+  ![View deck Screen - No Cards](ViewDeck-NoCards.png "view deck no cards" | width=100)
 
 - User can add a new card to a deck
-  ![New card Screen](NewCard.png "new card")
+  ![New card Screen](NewCard.png "new card" | width=100)
 
 - User can take a quiz
-  ![Quiz Screen](Quiz.png "quiz")
+  ![Quiz Screen - Question](Quiz-Question.png "quiz question" | width=100)
+
+  ![Quiz Screen - Answer](Quiz-Answer.png "quiz answer" | width=100)
+
+  ![Quiz Screen - Result](Quiz-Result.png "quiz result" | width=100)

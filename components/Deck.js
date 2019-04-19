@@ -20,7 +20,7 @@ class Deck extends Component{
     return(
       <View style={{flex: 1, justifyContent: 'center'}}>
         <Text style={styles.heading}>{deck.title}</Text>
-        <Text style={styles.content}>There are {deck.questions.length} cards in this deck</Text>
+        <Text style={styles.content}>Number of Cards: {deck.questions.length}</Text>
         {
           deck.questions.length===0 ?
           <Text style={styles.content}>To start the quiz, you will have to add atleast 1 card</Text>
@@ -38,8 +38,14 @@ class Deck extends Component{
         </TouchableOpacity>
         {
           deck.questions.length!== 0 &&
-          <TouchableOpacity style={styles.options}>
-            <Text style={styles.optionsText}>Start Quiz</Text>
+          <TouchableOpacity style={styles.options}
+            onPress={ () => {
+              this.props.navigation.navigate(
+                'QuizCard',
+                {deckId: deckId}
+              )
+            }} >
+            <Text style={styles.optionsText}>Start a Quiz</Text>
           </TouchableOpacity>
         }
       </View>
