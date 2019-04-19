@@ -10,6 +10,7 @@ import {Constants} from 'expo'
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 import AddDeck from './components/AddDeck'
+import AddCard from './components/AddCard'
 
 function UdaciStatusBar({backgroundColor, ...props}){
   return(
@@ -63,6 +64,15 @@ const Stack = createAppContainer(createStackNavigator({
   },
   Deck: {
     screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: navyBlue
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

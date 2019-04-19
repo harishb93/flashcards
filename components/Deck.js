@@ -27,7 +27,13 @@ class Deck extends Component{
           :
           <Text style={styles.content}>Would you like to take the quiz or add a new card?</Text>
         }
-        <TouchableOpacity style={styles.options}>
+        <TouchableOpacity style={styles.options}
+          onPress={ () => {
+            this.props.navigation.navigate(
+              'AddCard',
+              {deckId: deckId, title: deck.title}
+            )
+          }} >
           <Text style={styles.optionsText}>Add Card</Text>
         </TouchableOpacity>
         {
