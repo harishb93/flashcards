@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Platform, TouchableOpacity, Text, StyleSheet, TextInput} from 'react-native'
+import {KeyboardAvoidingView, Platform, TouchableOpacity, Text, StyleSheet, TextInput, Alert} from 'react-native'
 import {white,navyBlue,blue,purple} from '../utils/colors'
 import {addCard} from '../actions'
 import {connect} from 'react-redux'
@@ -34,27 +34,46 @@ class AddCard extends Component{
     const {question,answer} = this.state
     const {deckId,addCardToDeck,goBack,deck} = this.props
 
-    // this.props.dispatch(addCard(deckId,question,answer))
-    addCardToDeck(deckId,question,answer)
+    if(question.length > 0 && answer.length > 0){
+      //Dispatch action to add card to deck
+      addCardToDeck(deckId,question,answer)
+      //Store Updated deck in an object
+      const questionAndAnswer = {
+        question: question,
+        answer: answer
+      }
 
-    const questionAndAnswer = {
-      question: question,
-      answer: answer
+      const updatedDeck = {title: deck.title, questions: deck.questions.concat(questionAndAnswer)}
+      //Update deck in AsyncStorage
+      _addCardToDeck(deckId,updatedDeck)
+      //Set default values
+      this.setState({
+        question: '',
+        answer: ''
+      })
+      //Alert for adding card success
+      Alert.alert(
+        'Card Added',
+        'Successfully added card to the deck',
+        [
+          {text: 'OK'},
+        ],
+        {cancelable: false},
+      );
+      //Navigate to Home
+      goBack()
+    }
+    else{
+      Alert.alert(
+        'Empty Question/Answer',
+        'The question and/or the answer is empty. Please have some value.',
+        [
+          {text: 'OK'},
+        ],
+        {cancelable: false},
+      );
     }
 
-    const updatedDeck = {title: deck.title, questions: deck.questions.concat(questionAndAnswer)}
-
-    _addCardToDeck(deckId,updatedDeck)
-
-    this.setState({
-      question: '',
-      answer: ''
-    })
-
-    alert('Added successfully')
-    //Navigate to Home
-
-    goBack()
 
   }
 
@@ -66,10 +85,14 @@ class AddCard extends Component{
         <Text style={styles.heading}>Add Card</Text>
         <TextInput
           style={styles.textInput}
+          maxLength={50}
           onChangeText={(question) => this.setState({question})}
           value={question} placeholder="Question here" autoFocus={true} />
         <TextInput
           style={styles.textInput}
+          maxLength={50}
+          multiLine={true}
+          numberOfLines={3}
           onChangeText={(answer) => this.setState({answer})}
           value={answer} placeholder="Answer here" />
         <SubmitBtn onPress={this.submit} />

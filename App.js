@@ -5,6 +5,7 @@ import {Provider} from 'react-redux'
 import reducer from './reducers'
 import {Ionicons, MaterialCommunityIcons, Feather} from '@expo/vector-icons'
 import {createBottomTabNavigator,createAppContainer, createStackNavigator} from 'react-navigation'
+import { flipY, zoomIn, zoomOut } from 'react-navigation-transitions';
 import {purple,white,navyBlue} from './utils/colors'
 import {Constants} from 'expo'
 import Decks from './components/Decks'
@@ -59,6 +60,18 @@ const Tabs = createBottomTabNavigator({
   }
 })
 
+const handleCustomTransition = ({ scenes }) => {
+  const prevScene = scenes[scenes.length - 2];
+  const nextScene = scenes[scenes.length - 1];
+
+  if (prevScene
+    && prevScene.route.routeName === 'Home'
+    && nextScene.route.routeName === 'Deck') {
+    return zoomIn();
+  }
+
+}
+
 const Stack = createAppContainer(createStackNavigator({
   Home: {
     screen: Tabs
@@ -90,6 +103,8 @@ const Stack = createAppContainer(createStackNavigator({
       }
     }
   }
+},{
+  transitionConfig: (nav) => handleCustomTransition(nav),
 }))
 
 export default class App extends React.Component {

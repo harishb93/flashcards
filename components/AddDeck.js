@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import {KeyboardAvoidingView, Platform, TouchableOpacity, Text, StyleSheet, TextInput} from 'react-native'
+import {KeyboardAvoidingView, Platform, TouchableOpacity, Text, StyleSheet, TextInput,Alert} from 'react-native'
 import {white,navyBlue,blue} from '../utils/colors'
 import {addDeck} from '../actions'
 import {connect} from 'react-redux'
 import {NavigationActions} from 'react-navigation'
 import {_addDeck} from '../utils/api'
 
-function SubmitBtn({onPress}) {
+function SubmitBtn({onPress,allowSubmit}) {
   return (
     <TouchableOpacity
       style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.androidSubmitBtn} onPress={onPress}>
@@ -24,21 +24,31 @@ class AddDeck extends Component{
   submit = () => {
     const {deckName} = this.state
     const key=deckName.replace(/\s+/g, '');
-    this.props.dispatch(addDeck(key,deckName))
-
-    _addDeck(key,deckName)
-
-    //Navigate to Home
-
-    this.props.navigation.dispatch(NavigationActions.navigate({
-      routeName: 'Deck',
-      params: {deckId: key, title: deckName}
-    }))
-
-    this.setState({
-      deckName: ''
-    })
-
+    if(deckName.length > 2){
+      //Dispatch addDeck action
+      this.props.dispatch(addDeck(key,deckName))
+      //Add deck to storage using AsyncStorage
+      _addDeck(key,deckName)
+      //Navigate to Deck
+      this.props.navigation.dispatch(NavigationActions.navigate({
+        routeName: 'Deck',
+        params: {deckId: key, title: deckName}
+      }))
+      //Set state to default
+      this.setState({
+        deckName: ''
+      })
+    }
+    else{
+      Alert.alert(
+        'Deck Name length',
+        'Deck name must be more than 2 characters',
+        [
+          {text: 'OK'},
+        ],
+        {cancelable: false},
+      );
+    }
   }
 
   render(){
@@ -49,6 +59,7 @@ class AddDeck extends Component{
         <Text style={styles.content}>Enter name of the new deck you would like to add</Text>
         <TextInput
           style={styles.textInput}
+          maxLength={20}
           onChangeText={(deckName) => this.setState({deckName})}
           value={deckName} placeholder="Enter Deck Name" autoFocus={true} />
         <SubmitBtn onPress={this.submit} />
