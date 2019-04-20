@@ -3,6 +3,7 @@ import {View, Platform, TouchableOpacity, Text, StyleSheet, Button} from 'react-
 import {white,navyBlue,blue} from '../utils/colors'
 import {connect} from 'react-redux'
 import {NavigationActions} from 'react-navigation'
+import {clearLocalNotification,setLocalNotification} from '../utils/helpers'
 
 function SubmitBtn({text,onPress}) {
   return (
@@ -54,6 +55,11 @@ class QuizCard extends Component{
       correct: 0,
       index: 0,
     })
+  }
+
+  componentDidMount(){
+    clearLocalNotification()
+      .then(setLocalNotification)
   }
 
   render(){

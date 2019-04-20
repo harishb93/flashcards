@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {View, Platform,StatusBar, StyleSheet} from 'react-native'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
@@ -13,6 +13,7 @@ import Deck from './components/Deck'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import QuizCard from './components/QuizCard'
+import {setLocalNotification} from './utils/helpers'
 
 function UdaciStatusBar({backgroundColor, ...props}){
   return(
@@ -107,7 +108,11 @@ const Stack = createAppContainer(createStackNavigator({
   transitionConfig: (nav) => handleCustomTransition(nav),
 }))
 
-export default class App extends React.Component {
+export default class App extends Component {
+
+  componentDidMount(){
+    setLocalNotification()
+  }
 
   render() {
     return (
