@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, ScrollView, Platform, TouchableOpacity, Text, StyleSheet} from 'react-native'
+import {View, ScrollView, Platform, TouchableOpacity, Text, StyleSheet,FlatList} from 'react-native'
 import {navyBlue,purple,white,yellow} from '../utils/colors'
 import {connect} from 'react-redux'
 import {_receiveDecks} from '../utils/api'
@@ -43,7 +43,7 @@ class Decks extends Component{
     }
 
     return(
-      <View style={{flex: 1}}>
+      <ScrollView style={{flex: 1}}>
         <Text style={styles.heading}>Decks</Text>
         <View>
           {Object.keys(decks).map(key => {
@@ -61,12 +61,13 @@ class Decks extends Component{
               />
           )
         })}
+
         {
           (Object.keys(decks).length === 0) &&
           <Text style={styles.content}>There are no decks created. You can get started by adding a new deck</Text>
         }
       </View>
-    </View>
+    </ScrollView>
   )
 }
 }
