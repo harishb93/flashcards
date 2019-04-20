@@ -23,7 +23,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "org.udaciflashcards.exp"
+    },
+    "android": {
+      "package": "org.udaciflashcards.exp"
     }
   }
 }
