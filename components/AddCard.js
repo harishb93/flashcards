@@ -4,6 +4,7 @@ import {white,navyBlue,blue,purple} from '../utils/colors'
 import {addCard} from '../actions'
 import {connect} from 'react-redux'
 import {NavigationActions} from 'react-navigation'
+import {_addCardToDeck} from '../utils/api'
 
 function SubmitBtn({onPress}) {
   return (
@@ -31,10 +32,19 @@ class AddCard extends Component{
 
   submit = () => {
     const {question,answer} = this.state
-    const {deckId,addCardToDeck,goBack} = this.props
+    const {deckId,addCardToDeck,goBack,deck} = this.props
 
     // this.props.dispatch(addCard(deckId,question,answer))
     addCardToDeck(deckId,question,answer)
+
+    const questionAndAnswer = {
+      question: question,
+      answer: answer
+    }
+
+    const updatedDeck = {title: deck.title, questions: deck.questions.concat(questionAndAnswer)}
+
+    _addCardToDeck(deckId,updatedDeck)
 
     this.setState({
       question: '',
@@ -127,7 +137,8 @@ const styles=StyleSheet.create({
 function mapStateToProps(decks, {navigation}){
   const {deckId} = navigation.state.params
   return {
-    deckId
+    deckId,
+    deck: decks[deckId]
   }
 }
 

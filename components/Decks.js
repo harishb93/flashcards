@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import {View, ScrollView, Platform, TouchableOpacity, Text, StyleSheet} from 'react-native'
 import {navyBlue,purple,white,yellow} from '../utils/colors'
 import {connect} from 'react-redux'
+import {_receiveDecks} from '../utils/api'
+import {receiveDecks} from '../actions'
+import {AppLoading} from 'expo'
 
 function DeckCard({questionsCount, cardname, navigate}){
   return(
@@ -16,9 +19,28 @@ function DeckCard({questionsCount, cardname, navigate}){
 
 class Decks extends Component{
 
+  state ={
+    ready: false
+  }
+
+  componentDidMount(){
+    const {dispatch} = this.props
+
+    _receiveDecks()
+    .then((decks) => dispatch(receiveDecks(decks)))
+    .then(() => this.setState(() => ({
+      ready: true
+    })))
+  }
+
   render(){
 
     const {decks} = this.props
+    const {ready} = this.state
+
+    if(ready === false){
+      return <AppLoading />
+    }
 
     return(
       <View style={{flex: 1}}>
@@ -39,6 +61,10 @@ class Decks extends Component{
               />
           )
         })}
+        {
+          (Object.keys(decks).length === 0) &&
+          <Text style={styles.content}>There are no decks created. You can get started by adding a new deck</Text>
+        }
       </View>
     </View>
   )
@@ -95,7 +121,12 @@ const styles=StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     paddingBottom: 5
-  }
+  },
+  content: {
+    fontSize:20,
+    color: navyBlue,
+    textAlign: 'center'
+  },
 })
 
 function mapStateToProps(decks){

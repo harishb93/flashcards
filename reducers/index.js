@@ -4,7 +4,8 @@ function decks(state={},action){
   switch(action.type){
     case RECEIVE_DECKS:
       return {
-        ...state
+        ...state,
+        ...action.decks
       }
     case ADD_DECK:
       return {

@@ -4,6 +4,7 @@ import {white,navyBlue,blue} from '../utils/colors'
 import {addDeck} from '../actions'
 import {connect} from 'react-redux'
 import {NavigationActions} from 'react-navigation'
+import {_addDeck} from '../utils/api'
 
 function SubmitBtn({onPress}) {
   return (
@@ -24,6 +25,8 @@ class AddDeck extends Component{
     const {deckName} = this.state
     const key=deckName.replace(/\s+/g, '');
     this.props.dispatch(addDeck(key,deckName))
+
+    _addDeck(key,deckName)
 
     //Navigate to Home
 
